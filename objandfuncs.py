@@ -48,7 +48,9 @@ def vdict_cores(x):
 
     return hop
 
-data = 'C:\\Users\\leotp\\Desktop\\meugit\\Programas\\Leitor\\banco_de_dados.txt'
+data = 'C:\\Users\\leotp\\Desktop\\meusprojetos\\contador_do_leo\\banco_de_dados.txt'
+lista_de_tamanhos = ['PP','P','M','G','GG','EGG']
+
 
 def ler(mnsg='==>'):
     x = input(mnsg)
@@ -58,6 +60,51 @@ def ler(mnsg='==>'):
     y.append(x[:-12])
 
     return y
+
+def checar_cmd(entrada):
+    for cmd in entrada:
+        if cmd == 'SAIR':
+            exit('Saindo...')
+        
+        if cmd == 'COLECAO':
+            pass
+
+        if cmd == 'PESQUISA':
+            pass
+
+def ler_manual(mnsg='==>'):
+    entrada = input(mnsg).upper().split(' ')
+
+    ref = None
+    cor = None
+    qnt = None
+    tam = None
+    adc = []
+
+    for elemento in entrada:
+        if elemento.isnumeric() and len(elemento) == 7:
+            ref = elemento
+
+        if elemento.isalpha():
+            cor = elemento
+
+        if '.' in elemento:
+            elems = elemento.split('.')
+            if len(elems) != 2:
+                continue
+
+            if elems[0] in lista_de_tamanhos and elems[1].isnumeric():
+                qnt = int(elems[1])
+                tam = elems[0]
+            elif elems[1] in lista_de_tamanhos and elems[0].isnumeric():
+                qnt = int(elems[0])
+                tam = elems[1]
+            else:
+                continue
+
+            adc.append([qnt,tam])
+
+        return [ref,cor,adc]
 
 def carregar_dados():
     dados = open(data, 'r').read().split('\n')
