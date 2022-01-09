@@ -61,6 +61,9 @@ def ler(mnsg='==>'):
 
     return y
 
+
+################
+
 def checar_cmd(entrada):
     for cmd in entrada:
         if cmd == 'SAIR':
@@ -105,6 +108,9 @@ def ler_manual(mnsg='==>'):
             adc.append([qnt,tam])
 
         return [ref,cor,adc]
+
+
+################
 
 def carregar_dados():
     dados = open(data, 'r').read().split('\n')
